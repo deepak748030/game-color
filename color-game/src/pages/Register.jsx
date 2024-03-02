@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
+const apiUrl = import.meta.env.VITE_API_URL;
+console.log(apiUrl)
 const RegisterContainer = styled.div`
     background-color: #f0f0f0;
     border: 1px solid #ccc;
@@ -51,12 +53,13 @@ const RegisterPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/api/v1/auth/register', {
+            const response = await axios.post(`${apiUrl}/auth/register`, {
                 username,
                 phoneNumber,
                 password
             });
-            console.log(response.data);
+            // console.log(`${apiUrl}/auth/register`)
+            // console.log(response.data);
             // Handle success response
         } catch (error) {
             console.error(error);

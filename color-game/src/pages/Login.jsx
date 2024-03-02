@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { useAuth } from '../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom'
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 // Styled components for the login page
 const LoginContainer = styled.div`
     background-color: #f0f0f0;
@@ -74,7 +76,7 @@ const LoginPage = () => {
         e.preventDefault();
         try {
 
-            const { data } = await axios.post('http://localhost:3000/api/v1/auth/login', {
+            const { data } = await axios.post(`${apiUrl}/auth/login`, {
                 phoneNumber,
                 password
             });
