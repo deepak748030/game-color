@@ -7,7 +7,8 @@ const PORT = 3000
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server)
-
+const DbConnect = require('./config');
+DbConnect()
 
 
 io.on('connection', (socket) => {

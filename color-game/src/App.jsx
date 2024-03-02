@@ -1,23 +1,33 @@
-import React, { useEffect } from 'react';
-import Game from './pages/Game';
-import Login from './pages/Login'
+import React, { lazy, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProtectRoute from './assets/components/ProtectRoute'; // Correct the import
 import createSocketConnection from './hooks/Socket';
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+const Register = lazy(() => import('./pages/Register'))
+const Game = lazy(() => import('./pages/game/Game'));
+const Login = lazy(() => import('./pages/Login'));
 
 
 const App = () => {
-  // console.log(process.env.PORT)
   useEffect(() => {
     createSocketConnection((socket) => {
-      socket.emit('message', 'hello world')
-    })
+      socket.emit('message', 'hello world');
+    });
+  }, []);
 
-  }, [])
+  let user = true; // Example user, replace with your actual authentication logic
+
   return (
-    <div>
-      {/* <Game />hi */}
-      hi
-
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Register />} />
+        <Route element={<ProtectRoute user={user} />} path="/">
+          <Route path="/game" element={<Game />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
   );
 };
 
