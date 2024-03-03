@@ -2,7 +2,7 @@ const JWT = require('jsonwebtoken')
 const userModel = require('../models/UserModel')
 const requireSignIn = (req, res, next) => {
     try {
-        const token = requst.headers.autorization;
+        const token = req.headers.authorization;
         if (!token) {
             return res.status(401).json({
                 success: false,
