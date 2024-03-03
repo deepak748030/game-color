@@ -1,5 +1,5 @@
-import { createContext, useCallback, useContext, useState } from 'react'
-
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import axios from 'axios';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -9,6 +9,17 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('auth', JSON.stringify(userData))
         setAuth(userData);
     }
+    axios.defaults.headers.common['Authorization'] = auth?.token;
+
+    useEffect(() => {
+        const data = localStorage.getItem('auth');
+        if (data) {
+            const parseData = JSON.parse(data);
+            setAuth(parseData)
+        }
+    }, [])
+
+
     const logout = () => {
         localStorage.removeItem('auth');
         setAuth(null)

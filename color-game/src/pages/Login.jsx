@@ -72,6 +72,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -80,8 +81,8 @@ const LoginPage = () => {
                 phoneNumber,
                 password
             });
-            if (data?.success === true) {
-                await login(`data`);
+            if (data) {
+                await login(data);
                 console.log(data)
                 setPhoneNumber('');
                 setPassword('')
