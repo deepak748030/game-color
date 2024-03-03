@@ -10,6 +10,7 @@ Welcome to the Real Money Color Prediction Game! This application allows users t
 - **Transaction History**: Users can track their transaction history, including deposits, withdrawals, and bet outcomes.
 - **Admin Panel**: Administrators have access to an admin panel where they can manage user accounts, view betting statistics, and moderate the game.
 
+   ```bash
 ## Installation
 
 To run this application locally, follow these steps:
