@@ -4,12 +4,15 @@ const jwt = require('jsonwebtoken');
 
 const registerController = async (req, res) => {
     try {
-        const { username, phoneNumber, password, confirmPassword } = req.body;
+        const { username, phoneNumber, password } = req.body;
+        console.log(req.body)
+        console.log(phoneNumber)
+        // Check if phone number is provided
+        if (!phoneNumber) {
+            return res.status(400).json({ error: 'Phone number is required' });
+        }
 
         // Check if passwords match
-        if (password !== confirmPassword) {
-            return res.status(400).json({ error: 'Passwords do not match' });
-        }
 
         // Check if phone number already exists
         const existingUser = await UserModels.findOne({ phoneNumber });
@@ -31,7 +34,7 @@ const registerController = async (req, res) => {
         console.error('Error registering user:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-}
+};
 
 const loginController = async (req, res) => {
     try {
@@ -53,9 +56,17 @@ const loginController = async (req, res) => {
 
         // Generate JWT token
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
+        // username, phoneNumber, password 
         // Respond with token
-        res.status(200).json({ message: 'Login successful', token });
+        res.status(200).json({
+            message: 'Login successful',
+            user: {
+                username: user.username,
+                _id: user._id,
+                phoneNumber: user.phoneNumber,
+                role: user.role
+            }, token
+        });
 
     } catch (error) {
         console.error('Error logging in user:', error);
