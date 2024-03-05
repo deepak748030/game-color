@@ -1,18 +1,47 @@
 import React from 'react'
+import { FaAngleLeft } from "react-icons/fa6";
+import { RiNotification4Fill } from "react-icons/ri";
 
 const Header = () => {
     return (
-        <div className=' d-flex align-content-start 
-        justify-content-between' >
+        <header style={{
+            display: 'flex',
+            justifyContent: "space-between",
+            padding: '1rem ',
+            // border: '1px solid red',
+            width: '23rem',
+            alignItems: 'center',
+            fontSize: '1.3rem',
+            fontWeight: 'bolder',
+            backgroundColor: 'white',
+            borderRadius: '.3rem'
+        }}>
             <div style={{
-                backgroundColor: 'green',
-                padding: '1rem 2rem'
-            }}>GREEN</div>
-            <div className='bg-success  px-4 rounded-1' >VOILET</div>
-            <div className='bg-success px-4 rounded-1 bg-danger'>RED </div>
+                backgroundColor: 'aliceblue',
+                alignItems: 'center',
+                padding: '.4rem ',
+                display: 'flex', borderRadius: '.5rem',
 
 
-        </div>
+            }} >
+                <FaAngleLeft />
+            </div>
+
+            FAST PARITY
+            <div className='d-flex align-items-center ' >
+                <RiNotification4Fill />
+                <div style={{
+                    width: '2rem',
+                    height: '2rem',
+                    border: '1px solid black',
+                    borderRadius: ".6rem",
+                    marginLeft: '.5rem'
+
+
+                }} ></div>
+            </div>
+
+        </header>
     )
 }
 
