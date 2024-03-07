@@ -1,10 +1,8 @@
 import React from 'react'
-import { CiBank } from "react-icons/ci";
-import { Button } from 'react-bootstrap';
 import { FaStopwatch } from "react-icons/fa";
 import { FaQuestionCircle } from "react-icons/fa";
 import Layout from '../../assets/components/Layout';
-import { Helmet } from 'react-helmet';
+import Balance from '../../assets/components/Balance'
 
 const Game = () => {
     return (
@@ -15,54 +13,11 @@ const Game = () => {
 
             <div className='mx-2'>
 
-                <div className='d-flex' style={{
-                    backgroundColor: 'white',
-                    margin: '.7rem 0',
-                    height: '9rem',
-                    borderRadius: '.8rem',
-                    flexDirection: 'column',
-                    gap: '1rem',
-                    padding: '1.2rem'
-                }}  >
-                    <div className='d-flex '>
-                        <div className='d-flex ' style={{
-                            gap: '1rem'
-                        }} >
-                            <div className='d-flex p-2' style={{
-                                backgroundColor: 'aliceblue',
-                                height: '3.8rem',
-                                borderRadius: '.5rem'
-                            }} >
-                                <CiBank style={{
-                                    fontSize: '2.7rem'
-                                }} />
-                            </div>
-                            <div style={{
-                                // backgroundColor: 'red',
-                                height: '3.8rem',
 
-                            }} >
-                                <p style={{
-                                    fontWeight: 'bold',
-                                    letterSpacing: '.3px',
-                                    color: 'blue'
-                                }} >Available Balance</p>
-                                <h3 style={{
-                                    margin: '-.8rem 0'
-                                }}>
-                                    Rs.2,902.54
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                {/* balance section  */}
+                <Balance />
 
 
-                    <Button style={{
-                        letterSpacing: '1px'
-                    }}>Withdraw</Button>
-
-
-                </div>
 
                 <div className='d-flex justify-content-between ' style={{
                     backgroundColor: 'white',
@@ -93,7 +48,7 @@ const Game = () => {
                 </div>
                 {/* color prediction button */}
 
-                <div className='d-flex p-1 px-3 bg-white my-2 justify-content-between rounded '>
+                <div className='d-flex p-3 px-3 bg-white my-3 justify-content-between rounded '>
                     <button style={{ backgroundColor: '#E9FCE9', color: 'green' }} >Green</button>
                     <button style={{ backgroundColor: '#FEF6FE', color: 'voilet' }}>Violet</button>
                     <button style={{ backgroundColor: '#FFF5F5', color: 'red' }}>Red</button>
@@ -126,10 +81,40 @@ const Game = () => {
                     <div>Result</div>
                     <div>Price</div>
                 </div>
-                <div className='rounded' style={{
+                <div className='rounded py-2 my-1' style={{
                     display: 'grid', gridTemplateColumns: 'auto auto auto', justifyContent: 'space-between',
                     padding: ' .4rem .7rem', backgroundColor: '#E5E5FF',
-                    fontWeight: '500', borderBottom: '.1px solid black'
+                    fontWeight: '500',
+                }} >
+                    <div>20211213003</div>
+                    <div style={{
+                        height: '1.5rem', width: '1.5rem',
+                        backgroundColor: '#006600', borderRadius: '50%',
+                        marginLeft: '-2rem'
+                    }} ></div>
+                    <div>1854</div>
+
+
+                </div>
+                <div className='rounded py-2 my-1' style={{
+                    display: 'grid', gridTemplateColumns: 'auto auto auto', justifyContent: 'space-between',
+                    padding: ' .4rem .7rem', backgroundColor: '#E5E5FF',
+                    fontWeight: '500',
+                }} >
+                    <div>20211213003</div>
+                    <div style={{
+                        height: '1.5rem', width: '1.5rem',
+                        backgroundColor: '#006600', borderRadius: '50%',
+                        marginLeft: '-2rem'
+                    }} ></div>
+                    <div>1854</div>
+
+
+                </div>
+                <div className='rounded py-2 my-1' style={{
+                    display: 'grid', gridTemplateColumns: 'auto auto auto', justifyContent: 'space-between',
+                    padding: ' .4rem .7rem', backgroundColor: '#E5E5FF',
+                    fontWeight: '500',
                 }} >
                     <div>20211213003</div>
                     <div style={{
@@ -143,36 +128,12 @@ const Game = () => {
                 </div>
 
 
-                <div className='rounded' style={{
-                    display: 'grid', gridTemplateColumns: 'auto auto auto', justifyContent: 'space-between',
-                    padding: ' .4rem .7rem', backgroundColor: '#E5E5FF',
-                    fontWeight: '500', borderBottom: '.1px solid black'
-                }} >
-                    <div>20211213003</div>
-                    <div style={{
-                        height: '1.5rem', width: '1.5rem',
-                        backgroundColor: '#006600', borderRadius: '50%',
-                        marginLeft: '-2rem'
-                    }} ></div>
-                    <div>1854</div>
 
 
-                </div>
 
 
-                <div className='rounded' style={{
-                    display: 'grid', gridTemplateColumns: 'auto auto auto', justifyContent: 'space-between',
-                    padding: ' .4rem .7rem', backgroundColor: '#E5E5FF',
-                    fontWeight: '500', borderBottom: '.1px solid black'
-                }} >
-                    <div>20211213003</div>
-                    <div style={{
-                        height: '1.5rem', width: '1.5rem',
-                        backgroundColor: '#006600', borderRadius: '50%',
-                        marginLeft: '-2rem'
-                    }} ></div>
-                    <div>1854</div>
-                </div>
+
+
 
 
 
