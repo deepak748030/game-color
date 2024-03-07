@@ -6,10 +6,14 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Register = lazy(() => import('./pages/Register'))
-const Game = lazy(() => import('./pages/game/Game'));
-const Login = lazy(() => import('./pages/Login'));
-const Home = lazy(() => import('./pages/Home'));
+import Register from './pages/Register';
+import Game from './pages/game/Game';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import User from './pages/User';
+import Invite from './pages/Invite';
+import Recharge from './pages/Recharge';
+
 
 const App = () => {
   useEffect(() => {
@@ -25,6 +29,9 @@ const App = () => {
         <Route element={<ProtectRoute />}>
           <Route path="/" element={<Home />} />
           <Route path="/game" element={<Game />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/recharge" element={<Recharge />} />
+          <Route path="/Invite" element={<Invite />} />
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

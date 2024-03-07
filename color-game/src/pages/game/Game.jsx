@@ -10,8 +10,8 @@ const Game = () => {
     return (
 
 
-        <Layout>
-            <Helmet title='FAST-PARITY' />
+        <Layout title='FAST-PARITY' >
+
 
             <div className='mx-2'>
 

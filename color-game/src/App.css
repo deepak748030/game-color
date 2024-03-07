@@ -13,3 +13,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.active {
+    background-color: rgb(196, 218, 237);
+}
