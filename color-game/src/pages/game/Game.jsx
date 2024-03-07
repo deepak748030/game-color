@@ -4,12 +4,14 @@ import { Button } from 'react-bootstrap';
 import { FaStopwatch } from "react-icons/fa";
 import { FaQuestionCircle } from "react-icons/fa";
 import Layout from '../../assets/components/Layout';
+import { Helmet } from 'react-helmet';
 
 const Game = () => {
     return (
 
 
         <Layout>
+            <Helmet title='FAST-PARITY' />
 
             <div className='mx-2'>
 

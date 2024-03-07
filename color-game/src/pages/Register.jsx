@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { ToastContainer, toast } from 'react-toastify';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 console.log(apiUrl)
@@ -58,12 +59,14 @@ const RegisterPage = () => {
                 phoneNumber,
                 password
             });
-            // console.log(`${apiUrl}/auth/register`)
-            // console.log(response.data);
-            // Handle success response
+            if (response.data) {
+                toast.success(res.data.message)
+            } else {
+                toast.error(res.data.error)
+            }
         } catch (error) {
             console.error(error);
-            // Handle error
+            toast.error(res.data.message)
         }
     };
 
@@ -76,6 +79,7 @@ const RegisterPage = () => {
 
         }} >
             <RegisterContainer>
+                <ToastContainer />
                 <h2>Create Account</h2>
                 <form onSubmit={handleSubmit}>
                     <FormGroup>

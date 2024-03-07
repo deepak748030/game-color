@@ -5,19 +5,16 @@ const jwt = require('jsonwebtoken');
 const registerController = async (req, res) => {
     try {
         const { username, phoneNumber, password } = req.body;
-        console.log(req.body)
-        console.log(phoneNumber)
+
         // Check if phone number is provided
         if (!phoneNumber) {
-            return res.status(400).json({ error: 'Phone number is required' });
+            return res.status(400).json({ message: 'Phone number is required' });
         }
-
-        // Check if passwords match
 
         // Check if phone number already exists
         const existingUser = await UserModels.findOne({ phoneNumber });
         if (existingUser) {
-            return res.status(400).json({ error: 'Username or phone number already exists' });
+            return res.status(400).json({ message: 'Phone number is already registered' });
         }
 
         // Hash the password

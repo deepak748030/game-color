@@ -1,8 +1,10 @@
 import React from 'react'
 import Header from './Header'
 import Navbar from './Navbar'
+import { ToastContainer } from 'react-toastify';
+import { Helmet } from "react-helmet";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title = 'COLOUR-GAME' }) => {
     return (
         <div style={{
             display: 'flex',
@@ -13,8 +15,13 @@ const Layout = ({ children }) => {
             borderRadius: '1rem',
             color: '#262626'
         }}>
-            <div style={{ position: 'relative' }} >
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{title}</title>
+            </Helmet>
 
+            <div style={{ position: 'relative' }} >
+                <ToastContainer />
                 <Header />
                 {children}
                 <Navbar />

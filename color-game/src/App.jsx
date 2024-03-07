@@ -4,6 +4,8 @@ import ProtectRoute from './assets/components/ProtectRoute'; // Correct the impo
 import createSocketConnection from './hooks/Socket';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Register = lazy(() => import('./pages/Register'))
 const Game = lazy(() => import('./pages/game/Game'));
 const Login = lazy(() => import('./pages/Login'));

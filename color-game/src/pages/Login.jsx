@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { useAuth } from '../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -83,14 +84,18 @@ const LoginPage = () => {
             });
             if (data) {
                 await login(data);
-                console.log(data)
+                // console.log(data)
+                toast.success(data.message)
                 setPhoneNumber('');
                 setPassword('')
                 navigate('/')
             }
+            else {
+                toast.error(data.message)
+            }
         } catch (error) {
             console.error(error);
-
+            toast.error('something went wrong')
         }
     };
 
@@ -103,6 +108,8 @@ const LoginPage = () => {
 
         }}>
             <LoginContainer>
+                <ToastContainer />
+
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
                     <FormGroup>
