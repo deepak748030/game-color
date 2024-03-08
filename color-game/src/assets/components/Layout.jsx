@@ -8,7 +8,7 @@ const Layout = ({ children, title = 'COLOUR-GAME' }) => {
     return (
         <div style={{
             display: 'flex',
-            background: '#F5F5FF',
+            background: '#E5F3FF',
             // border: '.1px solid black',
             minWidth: '21rem',
             minHeight: '100vh',
