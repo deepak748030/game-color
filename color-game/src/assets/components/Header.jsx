@@ -6,6 +6,7 @@ const Header = () => {
     return (
         <header style={{
             display: 'flex',
+            boxShadow: ' rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
             justifyContent: "space-between",
             padding: '1rem ',
             // border: '1px solid red',
@@ -28,7 +29,7 @@ const Header = () => {
             </div>
 
             FAST PARITY
-            <div className='d-flex align-items-center ' >
+            < div className='d-flex align-items-center ' >
                 <RiNotification4Fill />
                 <div style={{
                     width: '2rem',
@@ -39,9 +40,9 @@ const Header = () => {
 
 
                 }} ></div>
-            </div>
+            </div >
 
-        </header>
+        </header >
     )
 }
 

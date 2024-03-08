@@ -3,6 +3,7 @@ import { useAuth } from '../hooks/AuthContext'
 import Layout from '../assets/components/Layout';
 import Balance from '../assets/components/Balance';
 import { FaStopwatch } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -47,7 +48,7 @@ const Home = () => {
 
 
                 <div
-                    className='my-1 mx-3'
+                    className='my-1 mx-4'
                     style={{
                         fontWeight: 'bold',
                         opacity: '.7'
@@ -59,25 +60,30 @@ const Home = () => {
                     flexWrap: 'wrap',
 
                 }} >
-                    <div
+                    <Link to={'game'}
                         className='rounded p-1 my-2'
                         style={{
+                            boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
                             width: '48%',
                             backgroundColor: 'white',
-                            border: '.1px solid black',
+                            // border: '.1px solid black',
 
                         }} >
                         <div
+                            className='d-flex justify-content-center'
                             style={{
                                 minHeight: '6rem',
-                                // backgroundColor: 'purple',
-                                position: 'relative'
+                                // position: 'relative'
                             }}>
-                            <img alt='not found' ></img>
+                            <img src='fast_parity.jpg' alt='not found' style={{
+                                height: '7rem',
+                                width: '100%',
+                                borderRadius: '.2rem'
+                            }} ></img>
                         </div>
                         <div className='d-flex 
-                    align-items-center gap-2 py-1
-                    justify-content-center fw-bold '
+                     align-items-center gap-2 py-1
+                     justify-content-center fw-bold '
                             style={{
                                 opacity: '.7'
                             }}
@@ -93,78 +99,7 @@ const Home = () => {
                                 color: 'blue'
                             }} > 30 SEC</div>
                         </div>
-                    </div>
-                    <div
-                        className='rounded p-1 my-2'
-                        style={{
-                            width: '48%',
-                            backgroundColor: 'white',
-                            border: '.1px solid black',
-
-                        }} >
-                        <div
-                            style={{
-                                minHeight: '6rem',
-                                // backgroundColor: 'purple',
-                                position: 'relative'
-                            }}>
-                            <img alt='not found' ></img>
-                        </div>
-                        <div className='d-flex 
-                    align-items-center gap-2 py-1
-                    justify-content-center fw-bold '
-                            style={{
-                                opacity: '.7'
-                            }}
-                        >
-                            <FaStopwatch
-                                style={{
-                                    paddingBottom: '.1rem',
-                                    fontSize: '1.3rem'
-
-                                }} />
-
-                            <div style={{
-                                color: 'blue'
-                            }} > 30 SEC</div>
-                        </div>
-                    </div>
-
-                    <div
-                        className='rounded p-1 my-2'
-                        style={{
-                            width: '48%',
-                            backgroundColor: 'white',
-                            border: '.1px solid black',
-
-                        }} >
-                        <div
-                            style={{
-                                minHeight: '6rem',
-                                // backgroundColor: 'purple',
-                                position: 'relative'
-                            }}>
-                            <img alt='not found' ></img>
-                        </div>
-                        <div className='d-flex 
-                    align-items-center gap-2 py-1
-                    justify-content-center fw-bold '
-                            style={{
-                                opacity: '.7'
-                            }}
-                        >
-                            <FaStopwatch
-                                style={{
-                                    paddingBottom: '.1rem',
-                                    fontSize: '1.3rem'
-
-                                }} />
-
-                            <div style={{
-                                color: 'blue'
-                            }} > 30 SEC</div>
-                        </div>
-                    </div>
+                    </Link>
 
                 </div>
             </div>

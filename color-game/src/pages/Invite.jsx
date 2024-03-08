@@ -7,6 +7,9 @@ import { FaUserPlus } from "react-icons/fa";
 import { FaCopy } from "react-icons/fa";
 
 const Invite = () => {
+
+
+
     return (
         <Layout title='INVITE-USERS'>
             <div className='mx-2'>

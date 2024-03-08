@@ -6,6 +6,7 @@ const Balance = () => {
 
         <div className='d-flex' style={{
             backgroundColor: 'white',
+            boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
             margin: '.7rem 0',
             height: '9rem',
             borderRadius: '.8rem',

@@ -10,7 +10,7 @@ const Navbar = () => {
             style={{ position: 'absolute', bottom: '0', width: '100%', backgroundColor: 'aliceblue' }}
         >
             <div className='d-flex justify-content-between px-2 py-1 rounded'
-                style={{ fontWeight: '500' }}
+                style={{ fontWeight: '500', boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' }}
             >
                 <div className='d-flex align-items-center px-2 py-1 rounded' style={{ flexDirection: 'column' }}>
                     <NavLink to={'/'} className='px-2 rounded pb-1' > <IoMdHome style={{ fontSize: '1.5rem' }} /> </NavLink>
