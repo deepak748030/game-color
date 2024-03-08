@@ -2,7 +2,8 @@ import React from 'react'
 import { FaStopwatch } from "react-icons/fa";
 import { FaQuestionCircle } from "react-icons/fa";
 import Layout from '../../assets/components/Layout';
-import Balance from '../../assets/components/Balance'
+// import Balance from '../../assets/components/Balance'
+import Balanceone from '../../assets/components/Balanceone';
 
 const Game = () => {
     return (
@@ -15,7 +16,7 @@ const Game = () => {
 
 
                 {/* balance section  */}
-                <Balance />
+                <Balanceone />
 
 
 

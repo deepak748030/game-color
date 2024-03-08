@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Layout from '../assets/components/Layout'
-import Balance from '../assets/components/Balance'
+import Balancetwo from '../assets/components/Balancetwo'
 import { Button } from 'react-bootstrap'
 
 const Recharge = () => {
@@ -15,7 +15,7 @@ const Recharge = () => {
     return (
         <Layout>
             <div className='px-2'>
-                <Balance />
+                <Balancetwo />
                 <div className='fw-bold mx-1' style={{
                     opacity: '.7'
                 }} >Select Amount</div>

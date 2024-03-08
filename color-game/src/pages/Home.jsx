@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from '../hooks/AuthContext'
 import Layout from '../assets/components/Layout';
-import Balance from '../assets/components/Balance';
+import Balancetwo from '../assets/components/Balancetwo';
 import { FaStopwatch } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 
@@ -43,7 +43,7 @@ const Home = () => {
                 {/* slider ended  */}
 
                 <diV className="mx-2">
-                    <Balance />
+                    <Balancetwo />
                 </diV>
 
 

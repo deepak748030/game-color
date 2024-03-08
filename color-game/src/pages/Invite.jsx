@@ -1,11 +1,10 @@
 import React from 'react'
 import Layout from '../assets/components/Layout'
-import Balance from '../assets/components/Balance'
 import { FaDatabase } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
 import { FaCopy } from "react-icons/fa";
-
+import Balancetwo from '../assets/components/Balancetwo';
 const Invite = () => {
 
 
@@ -13,7 +12,7 @@ const Invite = () => {
     return (
         <Layout title='INVITE-USERS'>
             <div className='mx-2'>
-                <Balance />
+                <Balancetwo />
             </div>
 
 

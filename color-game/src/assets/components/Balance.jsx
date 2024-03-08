@@ -1,7 +1,7 @@
 import React from 'react'
 import { CiBank } from "react-icons/ci";
 import { Button } from 'react-bootstrap';
-const Balance = () => {
+const Balance = ({ children }) => {
     return (
 
         <div className='d-flex' style={{
@@ -45,9 +45,7 @@ const Balance = () => {
                     </div>
                 </div>
             </div>
-            <Button style={{
-                letterSpacing: '1px'
-            }}>Withdraw</Button>
+            {children}
 
 
         </div>
