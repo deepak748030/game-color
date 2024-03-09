@@ -1,19 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaStopwatch } from "react-icons/fa";
 import { FaQuestionCircle } from "react-icons/fa";
 import Layout from '../../assets/components/Layout';
-// import Balance from '../../assets/components/Balance'
 import Balanceone from '../../assets/components/Balanceone';
+import Drawer from '../Drawer';
 
 const Game = () => {
+
+
+    const [color, setcolor] = useState('')
+    const [drawer, setDrawer] = useState(false)
     return (
 
 
         <Layout title='FAST-PARITY' >
 
 
-            <div className='mx-2'>
+            <div className='mx-2' style={{
+                position: 'relative'
+            }}>
 
+                {drawer ? (
+                    <div style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100vh',
+                        backgroundColor: 'white',
+                        overflow: 'hidden'
+                    }}>
+                        <Drawer clr={color} />
+                    </div>
+                ) : ''}
 
                 {/* balance section  */}
                 <Balanceone />
@@ -50,9 +67,9 @@ const Game = () => {
                 {/* color prediction button */}
 
                 <div className='d-flex p-3 px-3 bg-white my-3 justify-content-between rounded '>
-                    <button style={{ backgroundColor: '#E9FCE9', color: 'green' }} >Green</button>
-                    <button style={{ backgroundColor: '#FEF6FE', color: 'voilet' }}>Violet</button>
-                    <button style={{ backgroundColor: '#FFF5F5', color: 'red' }}>Red</button>
+                    <button style={{ backgroundColor: '#E9FCE9', color: 'green' }} onClick={() => { setcolor("green"); setDrawer(true) }}  >Green</button>
+                    <button style={{ backgroundColor: '#FEF6FE', color: 'voilet' }} onClick={() => { setcolor("voilet"); setDrawer(true) }} >Violet</button>
+                    <button style={{ backgroundColor: '#FFF5F5', color: 'red' }} onClick={() => { setcolor("red"); setDrawer(true) }} >Red</button>
                 </div>
 
                 {/* Records Parity */}

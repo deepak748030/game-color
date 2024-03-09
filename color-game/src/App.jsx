@@ -13,7 +13,8 @@ import Home from './pages/Home';
 import User from './pages/User';
 import Invite from './pages/Invite';
 import Recharge from './pages/Recharge';
-
+import Withdraw from './pages/Withdraw'
+import Drawer from './pages/Drawer';
 
 const App = () => {
   useEffect(() => {
@@ -32,6 +33,8 @@ const App = () => {
           <Route path="/user" element={<User />} />
           <Route path="/recharge" element={<Recharge />} />
           <Route path="/Invite" element={<Invite />} />
+          <Route path="/withdraw" element={<Withdraw />} />
+          <Route path="/draw" element={<Drawer />} />
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
