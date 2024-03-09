@@ -3,32 +3,123 @@ import { FaStopwatch } from "react-icons/fa";
 import { FaQuestionCircle } from "react-icons/fa";
 import Layout from '../../assets/components/Layout';
 import Balanceone from '../../assets/components/Balanceone';
-import Drawer from '../Drawer';
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap'
 
 const Game = () => {
 
 
     const [color, setcolor] = useState('')
     const [drawer, setDrawer] = useState(false)
+
+
+
+
+
+
+
+
+    //color drawer
+    const navigate = useNavigate()
+
+    const btnData = [{ amount: 10 }, { amount: 20 }, { amount: 30 }, { amount: 40 }, { amount: 50 }, { amount: 100 },]
+    const [betAmount, setbetAmount] = useState(0)
+
+    const handleAmount = (amount) => {
+        setbetAmount(betAmount + amount)
+    }
+
     return (
 
 
         <Layout title='FAST-PARITY' >
 
 
-            <div className='mx-2' style={{
-                position: 'relative'
+            <div className='mx-2 ' style={{
+                position: 'relative',
+
             }}>
 
                 {drawer ? (
                     <div style={{
                         position: 'absolute',
                         width: '100%',
-                        height: '100vh',
+                        height: '90vh',
                         backgroundColor: 'white',
                         overflow: 'hidden'
                     }}>
-                        <Drawer clr={color} />
+                        <div className='px-2'>
+
+                            <div className='fw-bold mx-1' style={{
+                                opacity: '.7'
+                            }} >Select Amount</div>
+
+                            <div className='bg-white rounded' style={{
+                                // minHeight: '5rem',
+                                width: '22rem'
+                            }} >
+                                <div className='p-3 ' style={{
+                                    position: 'relative'
+                                }}>
+                                    <input className='px-5 fw-bold' style={{
+                                        height: '3rem',
+                                        borderRadius: '.8rem',
+                                        opacity: '.6',
+                                        border: '2px solid black'
+                                    }} type='text' placeholder='Enter Amount'
+                                        value={betAmount}
+                                        onChange={(e) => {
+                                            const rs = Number(e.target.value);
+                                            setbetAmount(rs)
+                                            if (rs == Number) {
+                                            }
+                                        }}
+                                    ></input>
+                                    <div className='d-flex justify-content-center
+            align-items-center bg-danger fw-bolder' style={{
+                                            height: '2rem',
+                                            width: '2rem',
+                                            borderRadius: '50%',
+                                            color: 'aliceblue',
+                                            fontSize: '1.2rem',
+                                            position: 'absolute',
+                                            top: '1.5rem',
+                                            left: '1.6rem',
+
+
+                                        }}>₹</div>
+
+                                </div>
+
+                                <div className='d-flex flex-wrap w-100 justify-content-center py-2
+        px-4'
+                                    style={{
+                                        rowGap: '1rem',
+                                        columnGap: '2rem'
+                                    }}
+                                >
+                                    {btnData.map((btn) => (
+                                        <Button key={btn.amount} className='bg-white text-success' style={{
+                                            width: '40%',
+                                            height: '3rem'
+                                        }}
+                                            onClick={() => handleAmount(btn.amount)}
+                                        >₹ {btn.amount}</Button>
+                                    ))}
+
+
+                                </div>
+                                <div className='d-flex justify-content-center'>
+                                    <Button className='btn my-3' onClick={() => { setDrawer(false) }} style={{
+                                        borderRadius: '3rem',
+                                        width: '90%',
+                                        height: '3.3rem'
+                                    }}>BET</Button>
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
                 ) : ''}
 
