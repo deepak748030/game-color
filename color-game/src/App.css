@@ -15,7 +15,9 @@ body {
 }
 
 .active {
-    background-color: rgb(196, 218, 237);
+    background-color: rgb(147, 198, 243);
+    opacity: .8;
+
 }
 
 .bg {

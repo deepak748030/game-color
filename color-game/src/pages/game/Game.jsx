@@ -1,20 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaStopwatch } from "react-icons/fa";
 import { FaQuestionCircle } from "react-icons/fa";
 import Layout from '../../assets/components/Layout';
 import Balanceone from '../../assets/components/Balanceone';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap'
+import createSocketConnection from '../../hooks/Socket';
 
 const Game = () => {
 
 
     const [color, setcolor] = useState('')
     const [drawer, setDrawer] = useState(false)
+    const [countdown, setCountdown] = useState({ minutes: 2, seconds: 0 });
+    const [countperiod, setCountPeriod] = useState(1)
+
+
+    //useeffect
+    useEffect(() => {
+        createSocketConnection((socket) => {
+            socket.on('countdown', (data) => {
+                setCountdown(data);
+            });
+
+            socket.on('countPeriods', (data) => {
+                // console.log(data)
+                setCountPeriod(data)
+            })
+        });
 
 
 
-
+    }, []);
 
 
 
@@ -138,7 +155,7 @@ const Game = () => {
                         <p >Period</p>
                         <h3 style={{
                             margin: ' -1rem 0'
-                        }}>20211213003</h3>
+                        }}>000{countperiod}</h3>
                     </div>
                     <div>
                         <div>Count Down</div>
@@ -150,7 +167,8 @@ const Game = () => {
                             color: 'blue'
                         }}>
                             <FaStopwatch style={{ color: 'blue' }} />
-                            00:28
+                            {countdown.minutes}:{countdown.seconds < 10 ? `0${countdown.seconds}` : countdown.seconds}
+
                         </div>
 
                     </div>
