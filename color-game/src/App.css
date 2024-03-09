@@ -17,3 +17,12 @@ body {
 .active {
     background-color: rgb(196, 218, 237);
 }
+
+.bg {
+    background-color: white;
+    transition: all.3s ease;
+}
+
+.bg:hover {
+    background-color: rgba(60, 75, 60, 0.373);
+}
