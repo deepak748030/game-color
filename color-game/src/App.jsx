@@ -16,11 +16,11 @@ import Recharge from './pages/Recharge';
 import Withdraw from './pages/Withdraw'
 
 const App = () => {
-  useEffect(() => {
-    createSocketConnection((socket) => {
-      socket.emit('message', 'hello world');
-    });
-  }, []);
+  // useEffect(() => {
+  //   createSocketConnection((socket) => {
+  //     socket.emit('message', 'hello world');
+  //   });
+  // }, []);
 
 
   return (

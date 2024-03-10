@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'admin'], // Define the allowed roles
         default: 'user' // Default role is 'user'
     },
+    wallet: {
+        required: true,
+        type: Number, // Corrected typo here
+        default: 30
+    },
     createdAt: {
         type: Date,
         default: Date.now

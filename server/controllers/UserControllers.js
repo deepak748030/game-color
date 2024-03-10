@@ -8,25 +8,24 @@ const registerController = async (req, res) => {
 
         // Check if phone number is provided
         if (!phoneNumber) {
-            return res.status(400).json({ message: 'Phone number is required' });
+            return res.status(400).json({ error: 'Phone number is required' });
         }
 
         // Check if phone number already exists
         const existingUser = await UserModels.findOne({ phoneNumber });
         if (existingUser) {
-            return res.status(400).json({ message: 'Phone number is already registered' });
+            return res.status(400).json({ error: 'Phone number is already registered' });
         }
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create a new user
-        const newUser = new UserModels({ username, phoneNumber, password: hashedPassword });
-        await newUser.save();
+        const data = new UserModels({ username, phoneNumber, password: hashedPassword });
+        await data.save();
 
         // Respond with success message
         res.status(201).json({ message: 'User registered successfully' });
-
     } catch (error) {
         console.error('Error registering user:', error);
         res.status(500).json({ error: 'Internal server error' });
@@ -61,7 +60,8 @@ const loginController = async (req, res) => {
                 username: user.username,
                 _id: user._id,
                 phoneNumber: user.phoneNumber,
-                role: user.role
+                role: user.role,
+                wallet: user.wallet
             }, token
         });
 
