@@ -10,6 +10,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 const DbConnect = require('./config');
+const betRouter = require('./Routes/bet-router')
 const { startCountdown, performAction } = require('./helper/Helper');
 
 DbConnect(); // Connect to the database
@@ -17,6 +18,7 @@ DbConnect(); // Connect to the database
 app.use(cors());
 app.use(express.json());
 app.use('/api/v1/auth', router);
+app.use('/api/v1', betRouter);
 
 io.on('connection', (socket) => {
     console.log('User connected');

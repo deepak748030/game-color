@@ -6,15 +6,37 @@ import Balanceone from '../../assets/components/Balanceone';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap'
 import createSocketConnection from '../../hooks/Socket';
+import axios from 'axios'
+const apiUrl = import.meta.env.VITE_API_URL;
+import { useAuth } from '../../hooks/AuthContext'; // Updated import
+
 
 const Game = () => {
 
+    const { auth } = useAuth();
+    // console.log(auth)
 
     const [color, setcolor] = useState('')
     const [drawer, setDrawer] = useState(false)
     const [countdown, setCountdown] = useState({ minutes: 2, seconds: 0 });
     const [countperiod, setCountPeriod] = useState(1)
+    const [betAmount, setbetAmount] = useState(0)
 
+
+    const handleBet = () => {
+        try {
+
+            const userId = auth?.user?._id;
+            console.log(userId)
+            const res = axios.post(`${apiUrl}/bet/${userId}`, {
+                color,
+                betAmount
+            })
+        } catch (error) {
+            console.log(error)
+
+        }
+    }
 
     //useeffect
     useEffect(() => {
@@ -40,7 +62,6 @@ const Game = () => {
     const navigate = useNavigate()
 
     const btnData = [{ amount: 10 }, { amount: 20 }, { amount: 30 }, { amount: 40 }, { amount: 50 }, { amount: 100 },]
-    const [betAmount, setbetAmount] = useState(0)
 
     const handleAmount = (amount) => {
         setbetAmount(betAmount + amount)
@@ -120,14 +141,20 @@ const Game = () => {
                                             width: '40%',
                                             height: '3rem'
                                         }}
-                                            onClick={() => handleAmount(btn.amount)}
+                                            onClick={() => {
+                                                handleAmount(btn.amount);
+
+                                            }}
                                         >₹ {btn.amount}</Button>
                                     ))}
 
 
                                 </div>
                                 <div className='d-flex justify-content-center'>
-                                    <Button className='btn my-3' onClick={() => { setDrawer(false) }} style={{
+                                    <Button className='btn my-3' onClick={() => {
+                                        setDrawer(false);
+                                        handleBet();
+                                    }} style={{
                                         borderRadius: '3rem',
                                         width: '90%',
                                         height: '3.3rem'

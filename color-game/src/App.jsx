@@ -1,4 +1,4 @@
-import React, { lazy, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProtectRoute from './assets/components/ProtectRoute'; // Correct the import
 import createSocketConnection from './hooks/Socket';
