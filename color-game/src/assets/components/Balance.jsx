@@ -1,6 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiBank } from "react-icons/ci";
+import createSocketConnection from '../../hooks/Socket';
 const Balance = ({ children }) => {
+
+
+    const [walletBalance, setWalletBalance] = useState(0);
+
+    useEffect(() => {
+
+        createSocketConnection((socket) => {
+            socket.on('walletBalanceUpdate', ({ userId, newBalance }) => {
+                // Update wallet balance for the specific user
+                if (userId === currentUser.id) {
+                    setWalletBalance(newBalance);
+                }
+            });
+        });
+    }, []);
+
+
+
+
     return (
 
         <div className='d-flex' style={{
@@ -39,7 +59,7 @@ const Balance = ({ children }) => {
                         <h3 style={{
                             margin: '-.8rem 0'
                         }}>
-                            Rs.2,902.54
+                            Rs.{walletBalance}
                         </h3>
                     </div>
                 </div>

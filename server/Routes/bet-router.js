@@ -1,11 +1,8 @@
 const express = require('express');
+const { userBetController } = require('../controllers/betControllers');
 const router = express.Router();
 
-router.post('/bet/:userId', (req, res) => {
-    console.log(req.params)
-    console.log(req.body)
-    res.send({ ok: true })
-})
+router.post('/bet/:userId', userBetController)
 
 
 

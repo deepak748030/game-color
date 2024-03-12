@@ -13,13 +13,14 @@ const DbConnect = require('./config');
 const betRouter = require('./Routes/bet-router')
 const { startCountdown, performAction } = require('./helper/Helper');
 
-DbConnect(); // Connect to the database
+
 
 app.use(cors());
 app.use(express.json());
 app.use('/api/v1/auth', router);
 app.use('/api/v1', betRouter);
 
+DbConnect(); // Connect to the database
 io.on('connection', (socket) => {
     console.log('User connected');
 
@@ -37,6 +38,8 @@ io.on('connection', (socket) => {
 startCountdown(io); // Start the countdown timer
 performAction(io)
 
+
 server.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
+
