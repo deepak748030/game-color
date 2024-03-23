@@ -28,6 +28,10 @@ io.on('connection', (socket) => {
         console.log(msg);
         console.log('Total connected clients:', io.engine.clientsCount);
     });
+    // socket.on('walletBalanceUpdate', (data) => {
+    //     console.log(data)
+    //     console.log('data')
+    // })
 
     socket.on('disconnect', () => {
         console.log('User disconnected');

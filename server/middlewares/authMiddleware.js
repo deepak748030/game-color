@@ -13,7 +13,7 @@ const requireSignIn = (req, res, next) => {
         req.user = decode;
         next()
     } catch (error) {
-        console.error(error);
+        console.log('auth login');
         return res.status(401).json({
             success: false,
             message: 'Unauthorized: Invalid token',
