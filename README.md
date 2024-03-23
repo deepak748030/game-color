@@ -41,3 +41,48 @@ To run this application locally, follow these steps:
   MONGODB_URI: MongoDB connection string.
   JWT_SECRET: Secret key used for JWT token generation.
 
+
+server/
+  - controllers/
+    - authController.js   # Controller for user authentication
+    - gameController.js   # Controller for game-related operations
+    - transactionController.js   # Controller for handling transactions (add money, deduct money, etc.)
+  - models/
+    - User.js   # MongoDB model for user data
+    - Game.js   # MongoDB model for game data
+    - Transaction.js   # MongoDB model for transaction data
+  - routes/
+    - authRoutes.js   # Routes for user authentication
+    - gameRoutes.js   # Routes for game-related operations
+    - transactionRoutes.js   # Routes for transaction operations
+  - sockets/
+    - gameSocket.js   # Socket.io event handlers for real-time game updates
+    - transactionSocket.js   # Socket.io event handlers for real-time transaction updates
+  - app.js   # Entry point for backend application
+  - config.js   # Configuration file (e.g., database connection)
+  - server.js   # File to start the server
+
+
+
+Explanation of each folder:
+
+controllers/: This folder contains controllers responsible for handling different aspects of the application's logic.
+
+models/: This folder contains MongoDB models defining the structure of the data stored in the database.
+
+routes/: This folder contains Express.js routes defining API endpoints for various operations (authentication, game management, transaction handling).
+
+sockets/: This folder contains Socket.io event handlers for real-time communication between clients and the server.
+
+app.js: This file is the entry point for the backend application where Express.js is initialized and middleware is set up.
+
+config.js: This file contains configuration settings such as database connection details.
+
+server.js: This file is responsible for starting the server.
+
+This structure follows the MVC (Model-View-Controller) pattern, separating concerns and making the codebase more organized and maintainable. The gameSocket.js and transactionSocket.js files handle real-time updates for game events and transactions, respectively. The controllers handle authentication, game operations, and transaction management. Finally, the routes define the API endpoints for clients to interact with the server.
+
+
+
+
+
