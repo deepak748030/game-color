@@ -6,17 +6,18 @@ import { useAuth } from '../../hooks/AuthContext';
 
 const Balance = ({ children }) => {
     const { auth } = useAuth();
-    const [walletBalance, setWalletBalance] = useState(0);
+    const [walletBalance, setWalletBalance] = useState(null);
+
 
     useEffect(() => {
         // Emit event to request user's balance
         socket.emit('userBalance', { _id: auth.user._id });
-
-        // Listen for 'updatedBalance' event from the server
-        socket.on('updatedBalance', (updatedBalance) => {
-            // Update wallet balance with the received data
+        const balance = (updatedBalance) => {
             setWalletBalance(updatedBalance);
-        });
+            console.log(updatedBalance)
+        }
+        // Listen for 'updatedBalance' event from the server
+        socket.on('updatedBalance', balance);
 
         // Clean up event listener when component unmounts
         return () => {

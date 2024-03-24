@@ -23,12 +23,12 @@ const Game = () => {
     const [betAmount, setbetAmount] = useState(0)
 
 
-    const handleBet = () => {
+    const handleBet = async () => {
         try {
 
             const userId = auth?.user?._id;
             console.log(userId)
-            const res = axios.post(`${apiUrl}/bet/${userId}`, {
+            const res = await axios.post(`${apiUrl}/bet/${userId}`, {
                 color,
                 betAmount
             })
