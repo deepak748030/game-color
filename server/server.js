@@ -12,6 +12,7 @@ const io = new Server(server);
 const DbConnect = require('./config');
 const betRouter = require('./Routes/bet-router')
 const { startCountdown, performAction } = require('./helper/Helper');
+const findUserBalance = require('./controllers/findUserBalance');
 
 
 
@@ -22,16 +23,13 @@ app.use('/api/v1', betRouter);
 
 DbConnect(); // Connect to the database
 io.on('connection', (socket) => {
-    console.log('User connected');
 
-    socket.on('message', (msg) => {
-        console.log(msg);
-        console.log('Total connected clients:', io.engine.clientsCount);
-    });
-    // socket.on('walletBalanceUpdate', (data) => {
-    //     console.log(data)
-    //     console.log('data')
-    // })
+    console.log('Total connected clients:', io.engine.clientsCount);
+    socket.on('userBalance', (data) => {
+        console.log('userbalance done')
+        findUserBalance(data._id, io, socket)
+
+    })
 
     socket.on('disconnect', () => {
         console.log('User disconnected');

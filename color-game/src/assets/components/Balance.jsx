@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { CiBank } from "react-icons/ci";
-import createSocketConnection from '../../hooks/Socket';
+import axios from 'axios';
+import socket from '../../hooks/Socket'
+import { useAuth } from '../../hooks/AuthContext';
+
 const Balance = ({ children }) => {
-
-
+    const { auth } = useAuth();
     const [walletBalance, setWalletBalance] = useState(0);
 
     useEffect(() => {
+        // Emit event to request user's balance
+        socket.emit('userBalance', { _id: auth.user._id });
 
-        createSocketConnection((socket) => {
-            socket.on('walletBalanceUpdate', ({ userId, newBalance }) => {
-                // Update wallet balance for the specific user
-                if (userId === currentUser.id) {
-                    setWalletBalance(newBalance);
-                }
-            });
+        // Listen for 'updatedBalance' event from the server
+        socket.on('updatedBalance', (updatedBalance) => {
+            // Update wallet balance with the received data
+            setWalletBalance(updatedBalance);
         });
-    }, []);
+
+        // Clean up event listener when component unmounts
+        return () => {
+            socket.off('updatedBalance');
+        };
+    }, [auth.user._id]); // Re-run effect when user ID changes
+
 
 
 

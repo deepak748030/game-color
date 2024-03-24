@@ -5,7 +5,7 @@ import Layout from '../../assets/components/Layout';
 import Balanceone from '../../assets/components/Balanceone';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap'
-import createSocketConnection from '../../hooks/Socket';
+import socket from '../../hooks/Socket';
 import axios from 'axios'
 const apiUrl = import.meta.env.VITE_API_URL;
 import { useAuth } from '../../hooks/AuthContext'; // Updated import
@@ -32,28 +32,38 @@ const Game = () => {
                 color,
                 betAmount
             })
+            const data = { _id: userId }
+            socket.emit('userBalance', data)
+
         } catch (error) {
             console.log(error)
 
         }
     }
 
-    //useeffect
     useEffect(() => {
-        createSocketConnection((socket) => {
-            socket.on('countdown', (data) => {
-                setCountdown(data);
-            });
+        // Event listener for 'countdown' event
+        const countdownListener = (data) => {
+            setCountdown(data);
+        };
 
-            socket.on('countPeriods', (data) => {
-                // console.log(data)
-                setCountPeriod(data)
-            })
-        });
+        // Event listener for 'countPeriods' event
+        const countPeriodsListener = (data) => {
+            // console.log(data)
+            setCountPeriod(data);
+        };
 
+        // Add event listeners when the component mounts
+        socket.on('countdown', countdownListener);
+        socket.on('countPeriods', countPeriodsListener);
 
+        // Clean up event listeners when the component unmounts
+        return () => {
+            socket.off('countdown', countdownListener);
+            socket.off('countPeriods', countPeriodsListener);
+        };
+    }, []); // Empty dependency array ensures that this effect runs only once, similar to componentDidMount
 
-    }, []);
 
 
 

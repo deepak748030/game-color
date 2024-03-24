@@ -12,10 +12,7 @@ const Home = () => {
     return (
         <Layout title='HOME'>
 
-            <div style={{
-                // overflowY: 'scroll',
-                // marginBottom: '4rem'
-            }}>
+            <div>
 
                 <div className='mx-2 rounded p-1 my-2 rounded'
                     style={{
@@ -23,7 +20,7 @@ const Home = () => {
                         backgroundColor: 'white'
                     }}
                 >
-                    <div classname=" bg-danger">
+                    <div className=" bg-danger">
                         <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
@@ -42,9 +39,9 @@ const Home = () => {
 
                 {/* slider ended  */}
 
-                <diV className="mx-2">
+                <div className="mx-2">
                     <Balancetwo />
-                </diV>
+                </div>
 
 
                 <div
