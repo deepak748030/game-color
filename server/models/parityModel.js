@@ -1,6 +1,5 @@
-import mongoose from "mongoose";
-
-const paritySChema = new mongoose.Schema({
+const mongoose = require("mongoose");
+const paritySchema = new mongoose.Schema({
     parity: {
         type: Number,
         required: true
@@ -10,6 +9,6 @@ const paritySChema = new mongoose.Schema({
         required: true,
         enum: ['red', 'green', 'violet'],
     }
-})
+}, { timestamps: true }); // Move { timestamps: true } inside the options object
 
-module.exports = mongoose.model('Parity', paritySChema)
+module.exports = mongoose.model('Parity', paritySchema);

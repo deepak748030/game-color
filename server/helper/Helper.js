@@ -1,3 +1,5 @@
+const timerController = require("../controllers/timerController");
+
 // Function to perform action every 2 minutes
 let countperiod = 1;
 const performAction = async (io) => {
@@ -33,6 +35,7 @@ const startCountdown = (io) => {
         // Emit countdown data to the frontend
         io.emit('countdown', { minutes, seconds });
         // io.emit('countPeriods', countperiod)
+        // timerController()
         // console.log(countperiod)
     }, 1000);
 };
