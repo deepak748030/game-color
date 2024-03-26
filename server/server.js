@@ -13,7 +13,7 @@ const DbConnect = require('./config');
 const betRouter = require('./Routes/bet-router')
 const { startCountdown, performAction } = require('./helper/Helper');
 const findUserBalance = require('./controllers/findUserBalance');
-
+const findUserRecords = require('./controllers/findUserRecords')
 
 
 app.use(cors());
@@ -28,6 +28,8 @@ io.on('connection', (socket) => {
     socket.on('userBalance', (data) => {
         console.log('userbalance done')
         findUserBalance(data._id, io, socket)
+        // console.log(`finduser`)
+        findUserRecords(data._id, io, socket)
 
     })
 
@@ -38,7 +40,7 @@ io.on('connection', (socket) => {
 });
 
 startCountdown(io); // Start the countdown timer
-performAction(io)
+// performAction(io)
 
 
 server.listen(PORT, () => {

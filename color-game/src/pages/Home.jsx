@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
 
     const { auth } = useAuth();
-    console.log(auth)
+    // console.log(auth)
     return (
         <Layout title='HOME'>
 

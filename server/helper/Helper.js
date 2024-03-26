@@ -2,8 +2,8 @@
 let countperiod = 1;
 const performAction = async (io) => {
     console.log('Action performed every 2 minutes');
+    // console.log(countperiod)
     countperiod++;
-    console.log(countperiod)
     io.emit('countPeriods', countperiod)
 
 
@@ -11,7 +11,7 @@ const performAction = async (io) => {
 
 };
 
-let minutes = 2;
+let minutes = 1;
 let seconds = 0;
 
 // Function to start the countdown
@@ -24,7 +24,7 @@ const startCountdown = (io) => {
             } else {
                 // Perform action every 2 minutes
                 performAction(io);
-                minutes = 2; // Reset minutes to 2 for the next cycle
+                minutes = 1; // Reset minutes to 2 for the next cycle
             }
         } else {
             seconds--;
@@ -32,8 +32,9 @@ const startCountdown = (io) => {
 
         // Emit countdown data to the frontend
         io.emit('countdown', { minutes, seconds });
-        io.emit('countPeriods', countperiod)
+        // io.emit('countPeriods', countperiod)
+        // console.log(countperiod)
     }, 1000);
 };
 
-module.exports = { startCountdown, performAction };
+module.exports = { startCountdown, performAction, countperiod };

@@ -12,15 +12,15 @@ const Spinner = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCount((prevalue) => --prevalue);
+            console.log(`count`)
         }, 1000);
+
 
         if (count === 0) {
             if (auth?.user) {
-                navigate('/');
+                navigate('/login');
             } else {
-                navigate('/login', {
-                    state: location.pathname,
-                });
+                navigate('/login');
             }
         }
 
@@ -30,7 +30,7 @@ const Spinner = () => {
     return (<>
         <div className="spinner-container">
 
-            <div className="spinner"></div>
+            <div className="spinner">{count}1</div>
             <h1 className="text-center">Redirecting you in {count} seconds</h1>
         </div>
         hi

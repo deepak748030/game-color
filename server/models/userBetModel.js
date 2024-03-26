@@ -15,6 +15,10 @@ const userBetSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    period: {
+        type: Number,
+        required: true
+    },
     status: {
         type: String,
         enum: ['pending', 'won', 'lost'], // Status can be pending, won, or lost

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../hooks/AuthContext";
 import { Spinner } from "react-bootstrap";
@@ -8,7 +8,7 @@ const ProtectRoute = ({ redirect = '/login' }) => {
     const { auth } = useAuth();
     const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const authCheck = async () => {
 
@@ -26,7 +26,7 @@ const ProtectRoute = ({ redirect = '/login' }) => {
         }
     }, [auth?.token]);
 
-    return authenticated ? <Outlet /> : <Spinner />;
+    return authenticated ? <Outlet /> : <Spinner navigate='/login' />;
 };
 
 export default ProtectRoute;

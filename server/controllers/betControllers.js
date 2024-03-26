@@ -1,6 +1,7 @@
 const UserModel = require('../models/UserModel');
 const BetModel = require('../models/UserBetModel');
-const io = require('../server');
+
+const { countperiod } = require('../helper/Helper');
 
 const userBetController = async (req, res) => {
     try {
@@ -14,7 +15,7 @@ const userBetController = async (req, res) => {
                 message: 'All fields are required'
             });
         }
-
+        console.log('clgdone', countperiod)
         // Find user by ID and check wallet balance
         const user = await UserModel.findById(userId);
         if (!user) {
@@ -36,7 +37,7 @@ const userBetController = async (req, res) => {
         await user.save();
 
         // Create new user bet document
-        const userBet = new BetModel({ userId, color, betAmount });
+        const userBet = new BetModel({ userId, color, betAmount, period: countperiod });
         await userBet.save();
 
         // Emit wallet balance update event

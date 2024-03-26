@@ -9,6 +9,7 @@ import socket from '../../hooks/Socket';
 import axios from 'axios'
 const apiUrl = import.meta.env.VITE_API_URL;
 import { useAuth } from '../../hooks/AuthContext'; // Updated import
+import UserRecords from '../../assets/components/UserRecords';
 
 
 const Game = () => {
@@ -32,8 +33,8 @@ const Game = () => {
                 color,
                 betAmount
             })
-            const data = { _id: userId }
-            socket.emit('userBalance', data)
+            const data_id = { _id: userId }
+            socket.emit('userBalance', data_id)
 
         } catch (error) {
             console.log(error)
@@ -240,65 +241,8 @@ const Game = () => {
                 </div>
 
                 {/* records listes */}
-                <div className='d-flex justify-content-between fw-bold bg-white px-2 py-2 rounded '>
-                    <div>Period</div>
-                    <div>Result</div>
-                    <div>Price</div>
-                </div>
-                <div className='rounded py-2 my-1' style={{
-                    display: 'grid', gridTemplateColumns: 'auto auto auto', justifyContent: 'space-between',
-                    padding: ' .4rem .7rem', backgroundColor: '#E5E5FF',
-                    fontWeight: '500',
-                }} >
-                    <div>20211213003</div>
-                    <div style={{
-                        height: '1.5rem', width: '1.5rem',
-                        backgroundColor: '#006600', borderRadius: '50%',
-                        marginLeft: '-2rem'
-                    }} ></div>
-                    <div>1854</div>
 
-
-                </div>
-                <div className='rounded py-2 my-1' style={{
-                    display: 'grid', gridTemplateColumns: 'auto auto auto', justifyContent: 'space-between',
-                    padding: ' .4rem .7rem', backgroundColor: '#E5E5FF',
-                    fontWeight: '500',
-                }} >
-                    <div>20211213003</div>
-                    <div style={{
-                        height: '1.5rem', width: '1.5rem',
-                        backgroundColor: '#006600', borderRadius: '50%',
-                        marginLeft: '-2rem'
-                    }} ></div>
-                    <div>1854</div>
-
-
-                </div>
-                <div className='rounded py-2 my-1' style={{
-                    display: 'grid', gridTemplateColumns: 'auto auto auto', justifyContent: 'space-between',
-                    padding: ' .4rem .7rem', backgroundColor: '#E5E5FF',
-                    fontWeight: '500',
-                }} >
-                    <div>20211213003</div>
-                    <div style={{
-                        height: '1.5rem', width: '1.5rem',
-                        backgroundColor: '#006600', borderRadius: '50%',
-                        marginLeft: '-2rem'
-                    }} ></div>
-                    <div>1854</div>
-
-
-                </div>
-
-
-
-
-
-
-
-
-
+                <UserRecords />
 
 
 

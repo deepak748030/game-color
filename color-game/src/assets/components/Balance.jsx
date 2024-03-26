@@ -14,7 +14,7 @@ const Balance = ({ children }) => {
         socket.emit('userBalance', { _id: auth.user._id });
         const balance = (updatedBalance) => {
             setWalletBalance(updatedBalance);
-            console.log(updatedBalance)
+
         }
         // Listen for 'updatedBalance' event from the server
         socket.on('updatedBalance', balance);
@@ -23,7 +23,7 @@ const Balance = ({ children }) => {
         return () => {
             socket.off('updatedBalance');
         };
-    }, [auth.user._id]); // Re-run effect when user ID changes
+    }, [socket]); // Re-run effect when user ID changes
 
 
 
