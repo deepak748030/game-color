@@ -40,4 +40,4 @@ const startCountdown = (io) => {
     }, 1000);
 };
 
-module.exports = { startCountdown, performAction, countperiod };
+module.exports = { startCountdown, performAction };

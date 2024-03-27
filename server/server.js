@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
 
     console.log('Total connected clients:', io.engine.clientsCount);
     socket.on('userBalance', (data) => {
-        console.log('userbalance done')
+        // console.log('userbalance done')
         findUserBalance(data._id, io, socket)
         // console.log(`finduser`)
         findUserRecords(data._id, io, socket)

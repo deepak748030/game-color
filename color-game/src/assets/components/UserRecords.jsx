@@ -5,7 +5,7 @@ const UserRecords = () => {
     const [userData, setUserData] = useState([])
     const handleUserRecords = (data) => {
         setUserData(data)
-        console.log(data)
+        // console.log(data)
     }
 
 

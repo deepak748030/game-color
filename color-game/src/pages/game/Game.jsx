@@ -10,12 +10,14 @@ import axios from 'axios'
 const apiUrl = import.meta.env.VITE_API_URL;
 import { useAuth } from '../../hooks/AuthContext'; // Updated import
 import UserRecords from '../../assets/components/UserRecords';
+import Records from '../../assets/components/Records';
 
 
 const Game = () => {
 
     const { auth } = useAuth();
     // console.log(auth)
+    const [recordsNav, setRecordsNAv] = useState(0)
 
     const [color, setcolor] = useState('')
     const [drawer, setDrawer] = useState(false)
@@ -224,8 +226,14 @@ const Game = () => {
                 <div className='d-flex bg-white rounded' style={{
                     cursor: 'pointer'
                 }}  >
-                    <div className='w-50 border py-2 d-flex justify-content-center rounded ' style={{ backgroundColor: '#3333FF', color: 'aliceblue' }} >Parity Records</div>
-                    <div className='w-50 border py-2 d-flex justify-content-center rounded'>My Records</div>
+                    <div
+                        className='w-50 border py-2 d-flex justify-content-center rounded '
+                        style={{ backgroundColor: '#3333FF', color: 'aliceblue' }}
+                        onClick={() => setRecordsNAv(0)}
+                    >Parity Records</div>
+                    <div className='w-50 border py-2 d-flex justify-content-center rounded'
+                        onClick={() => setRecordsNAv(1)}
+                    >My Records</div>
                     <div className='w-50 border py-2 d-flex justify-content-center rounded'>Winners</div>
                 </div>
 
@@ -242,7 +250,8 @@ const Game = () => {
 
                 {/* records listes */}
 
-                <UserRecords />
+                {recordsNav == 0 ? (<UserRecords />) : (<Records />)}
+
 
 
 
