@@ -20,7 +20,9 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/v1/auth', router);
 app.use('/api/v1', betRouter);
-
+app.get('/'),(req,res)=>{
+res.send('hello')}
+    )
 DbConnect(); // Connect to the database
 io.on('connection', (socket) => {
 
