@@ -16,13 +16,17 @@ const Records = () => {
         }
     };
 
+    const handleDataAll = (data) => {
+        setResults(data)
+    }
+
     useEffect(() => {
         getResults();
 
         // Subscribe to socket events if needed
-        // socket.on('allRecords', handleDataAll);
-        // return () => socket.off('allRecords', handleDataAll);
-    }, []);
+        socket.on('allRecords', handleDataAll);
+        return () => socket.off('allRecords', handleDataAll);
+    }, [socket]);
 
     return (
         <div>

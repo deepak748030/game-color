@@ -10,6 +10,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 const DbConnect = require('./config');
+DbConnect(); // Connect to the database
 const betRouter = require('./Routes/bet-router')
 const { startCountdown, performAction } = require('./helper/Helper');
 const findUserBalance = require('./controllers/findUserBalance');
@@ -21,7 +22,6 @@ app.use(express.json());
 app.use('/api/v1/auth', router);
 app.use('/api/v1', betRouter);
 
-DbConnect(); // Connect to the database
 io.on('connection', (socket) => {
 
     console.log('Total connected clients:', io.engine.clientsCount);

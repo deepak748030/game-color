@@ -1,21 +1,37 @@
 const parityModel = require('../models/parityModel')
 const BetModel = require('../models/UserBetModel');
-var countPeriod = 1;
+var countPeriod = 0;
+const myCache = require('../helper/myCache')
+myCache.set('countPeriods', countPeriod)
 
 const timerController = async () => {
     try {
-        const data = await parityModel.findOne().sort({ createdAt: -1 });
-        // const data = await parityModel.deleteMany();
+        let data = await parityModel.findOne().sort({ createdAt: -1 });
+        // myCache.set('allData', data)
+
+        // this is for to get all data on single fetch
+        // data = myCache.get('allData') 
+
+        // data = await parityModel.deleteMany();
         // console.log('data', data)
+
+
         if (data) {
+            console.log('not data')
             countPeriod = data.parity + 1;
+
         }
+        myCache.set('countPeriods', countPeriod)
         const result = await declareResult();
         const parityData = new parityModel({
             parity: countPeriod, result: result.color, price: result.totalBetAmount
 
         })
+        const periods = myCache.get('countPeriods')
+        console.log('set:', periods)
+
         await parityData.save();
+
         // console.log(parityData)
         // console.log('result', result)
 
@@ -23,11 +39,12 @@ const timerController = async () => {
         console.log(error)
     }
 }
-timerController()
+// timerController()
 const declareResult = async () => {
     try {
         let period = countPeriod;
         console.log('periods:', countPeriod)
+
         const betAmountResult = await BetModel.find({ period });
 
         // Initialize variables to store total bet amounts for each color
@@ -73,7 +90,7 @@ const declareResult = async () => {
 
 
     } catch (error) {
-        console.log('Error:', error);
+        console.log('Error:');
     }
 };
 

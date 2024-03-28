@@ -1,10 +1,12 @@
 const UserModel = require('../models/UserModel');
 const BetModel = require('../models/UserBetModel');
-
-const { countperiod } = require('../helper/Helper');
+const myCache = require('../helper/myCache')
 
 const userBetController = async (req, res) => {
     try {
+        const countPeriod1 = await myCache.get('countPeriods');
+        const countPeriod = await myCache.get('countPeriods') + 1;
+        console.log('---->:1:', countPeriod1, countPeriod)
         const { userId } = req.params;
         const { color, betAmount } = req.body;
 
@@ -15,7 +17,7 @@ const userBetController = async (req, res) => {
                 message: 'All fields are required'
             });
         }
-        console.log('clgdone', countperiod)
+        // console.log('clgdone', countperiod)
         // Find user by ID and check wallet balance
         const user = await UserModel.findById(userId);
         if (!user) {
@@ -37,7 +39,7 @@ const userBetController = async (req, res) => {
         await user.save();
 
         // Create new user bet document
-        const userBet = new BetModel({ userId, color, betAmount, period: countperiod });
+        const userBet = new BetModel({ userId, color, betAmount, period: countPeriod });
         await userBet.save();
 
         // Emit wallet balance update event

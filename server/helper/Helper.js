@@ -1,13 +1,15 @@
 const timerController = require("../controllers/timerController");
+const myCache = require('./myCache')
 
 // Function to perform action every 2 minutes
-let countperiod = 1;
+
 const performAction = async (io) => {
     console.log('Action performed every 2 minutes');
     // console.log(countperiod)
-    countperiod++;
-    io.emit('countPeriods', countperiod)
-
+    // let countperiod = myCache.get('countPeriods')
+    // countperiod = periods + 1;
+    // io.emit('countPeriods', countperiod)
+    timerController()
 
 
 
@@ -27,6 +29,8 @@ const startCountdown = (io) => {
                 // Perform action every 2 minutes
                 performAction(io);
                 minutes = 1; // Reset minutes to 2 for the next cycle
+
+
             }
         } else {
             seconds--;
@@ -34,7 +38,8 @@ const startCountdown = (io) => {
 
         // Emit countdown data to the frontend
         io.emit('countdown', { minutes, seconds });
-        // io.emit('countPeriods', countperiod)
+        let countperiod = myCache.get('countPeriods')
+        io.emit('countPeriods', countperiod)
         // timerController()
         // console.log(countperiod)
     }, 1000);

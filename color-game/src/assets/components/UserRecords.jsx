@@ -1,8 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import socket from '../../hooks/Socket'
+import axios from 'axios'
+const apiUrl = import.meta.env.VITE_API_URL;
 const UserRecords = () => {
 
     const [userData, setUserData] = useState([])
+
+
+    const getUserData = async () => {
+        try {
+
+            const { data } = axios.get(`${apiUrl}/getuserData`)
+
+        } catch (error) {
+            console.log('userRecords:', error)
+        }
+    }
+
     const handleUserRecords = (data) => {
         setUserData(data)
         // console.log(data)
@@ -29,7 +43,7 @@ const UserRecords = () => {
                 <div>Result</div>
                 <div>Price</div>
             </div>
-            {userData.map((data) => (
+            {userData?.map((data) => (
 
 
                 <div className='rounded py-2 my-1' key={data._id} style={{
@@ -38,7 +52,7 @@ const UserRecords = () => {
                     fontWeight: '500',
                 }} >
 
-                    <div  >20211213003</div>
+                    <div  >{data.period}</div>
                     <div style={{
                         height: '1.5rem', width: '1.5rem',
                         backgroundColor: '#006600', borderRadius: '50%',
