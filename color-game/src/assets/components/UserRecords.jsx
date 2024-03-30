@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import socket from '../../hooks/Socket'
 import axios from 'axios'
+import { useAuth } from '../../hooks/AuthContext';
 const apiUrl = import.meta.env.VITE_API_URL;
 const UserRecords = () => {
 
     const [userData, setUserData] = useState([])
-
+    const { auth } = useAuth();
 
     const getUserData = async () => {
         try {
@@ -24,6 +25,7 @@ const UserRecords = () => {
 
 
     useEffect((() => {
+        socket.emit('userBalance', { _id: auth.user._id });
         socket.on('userRecords', handleUserRecords)
 
         return () => (socket.off('userRecords', handleUserRecords))

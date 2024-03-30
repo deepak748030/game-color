@@ -228,17 +228,25 @@ const Game = () => {
                 }}  >
                     <div
                         className='w-50 border py-2 d-flex justify-content-center rounded '
-                        style={{ backgroundColor: '#3333FF', color: 'aliceblue' }}
-                        onClick={() => setRecordsNAv(0)}
-                    >Parity Records</div>
+                        style={recordsNav === 0 ? { backgroundColor: '#3333FF', color: 'aliceblue' } : {}}
+
+                        onClick={() => setRecordsNAv(0)}>
+                        Parity Records</div>
                     <div className='w-50 border py-2 d-flex justify-content-center rounded'
                         onClick={() => setRecordsNAv(1)}
+                        style={recordsNav === 1 ? { backgroundColor: '#3333FF', color: 'aliceblue' } : {}}
+
                     >My Records</div>
-                    <div className='w-50 border py-2 d-flex justify-content-center rounded'>Winners</div>
+                    <div className='w-50 border py-2 d-flex justify-content-center rounded'
+                        onClick={() => setRecordsNAv(2)}
+                        style={recordsNav === 2 ? { backgroundColor: '#3333FF', color: 'aliceblue' } : {}}
+                    >Winners</div>
                 </div>
 
 
-                <div className='d-flex justify-content-between my-2 fw-bold '>
+                <div className='d-flex justify-content-between my-2 fw-bold '
+
+                >
                     <div>Parity Record</div>
                     <div className='d-flex gap-1'>
                         <div>
@@ -250,7 +258,7 @@ const Game = () => {
 
                 {/* records listes */}
 
-                {recordsNav == 0 ? (<UserRecords />) : (<Records />)}
+                {recordsNav == 0 ? (<Records />) : (<UserRecords />)}
 
 
 

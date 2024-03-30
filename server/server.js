@@ -21,14 +21,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/v1/auth', router);
 app.use('/api/v1', betRouter);
-<<<<<<< HEAD
 
-=======
-app.get('/'),(req,res)=>{
-res.send('hello')}
-    )
-DbConnect(); // Connect to the database
->>>>>>> f2425bf7697a6a95dd18f013e1c049cbd4ce7d68
+
 io.on('connection', (socket) => {
 
     console.log('Total connected clients:', io.engine.clientsCount);

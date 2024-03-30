@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../assets/components/Layout'
 import { FaDatabase } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
@@ -7,7 +7,12 @@ import { FaCopy } from "react-icons/fa";
 import Balancetwo from '../assets/components/Balancetwo';
 const Invite = () => {
 
-
+    const [copy, setCopy] = useState('copy code')
+    const code = 'jDL231';
+    const copyToClipborad = () => {
+        navigator.clipboard.writeText(code);
+        setCopy('copied')
+    }
 
     return (
         <Layout title='INVITE-USERS'>
@@ -94,12 +99,17 @@ const Invite = () => {
                     }}>Your Referral code </div>
                     <div className='fw-bold'>jDL231</div>
                 </div>
-                <div className='text-primary d-flex align-items-center ' style={{
+                <div className='text-primary d-flex align-items-center cursor-pointer ' style={{
                     color: 'aliceblue',
                     fontSize: '.9rem'
-                }}  >
+                }}
+                    onClick={copyToClipborad}
+                >
                     <FaCopy />
-                    COPY CODE
+                    <span style={{ cursor: 'pointer' }}>
+
+                        {copy}
+                    </span>
                 </div>
             </div>
 
