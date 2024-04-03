@@ -120,6 +120,7 @@ const LoginPage = () => {
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
                             required
+                            autoComplete="false"
                         />
                     </FormGroup>
                     <FormGroup>
@@ -129,6 +130,7 @@ const LoginPage = () => {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            autoComplete="false"
                             required
                         />
                     </FormGroup>

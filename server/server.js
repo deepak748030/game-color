@@ -15,19 +15,22 @@ const betRouter = require('./Routes/bet-router')
 const { startCountdown, performAction } = require('./helper/Helper');
 const findUserBalance = require('./controllers/findUserBalance');
 const findUserRecords = require('./controllers/findUserRecords')
-
+const myCache = require('./helper/myCache');
+const sendAllData = require('./controllers/sendAllData');
 
 app.use(cors());
 app.use(express.json());
 app.use('/api/v1/auth', router);
 app.use('/api/v1', betRouter);
 
+var socketId = new Object;
 
 io.on('connection', (socket) => {
-
     console.log('Total connected clients:', io.engine.clientsCount);
+    sendAllData(io)
     socket.on('userBalance', (data) => {
-        // console.log('userbalance done')
+        socketId[data._id] = socket.id;
+        myCache.set('sockets', socketId);
         findUserBalance(data._id, io, socket)
         // console.log(`finduser`)
         findUserRecords(data._id, io, socket)
