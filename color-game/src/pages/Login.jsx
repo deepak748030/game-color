@@ -1,70 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import { useAuth } from '../hooks/AuthContext';
-import { useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
-
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { IoIosCall } from 'react-icons/io';
+import { FaKey } from 'react-icons/fa';
 const apiUrl = import.meta.env.VITE_API_URL;
-
-// Styled components for the login page
-const LoginContainer = styled.div`
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 20px;
-    width: 300px;
-    margin: 0 auto;
-
-    h2 {
-        margin-bottom: 20px;
-    }
-`;
-
-const FormGroup = styled.div`
-    margin-bottom: 20px;
-`;
-
-const Label = styled.label`
-    display: block;
-    font-weight: bold;
-`;
-
-const Input = styled.input`
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 5px;
-`;
-
-const Button = styled.button`
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-
-    &:hover {
-        background-color: #45a049;
-    }
-`;
-
-const AdditionalOptions = styled.div`
-    margin-top: 10px;
-    font-size: 14px;
-
-    a {
-        color: #007bff;
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-`;
 
 const LoginPage = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -72,79 +13,114 @@ const LoginPage = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
 
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-
             const { data } = await axios.post(`${apiUrl}/auth/login`, {
                 phoneNumber,
                 password
             });
             if (data) {
                 await login(data);
-                // console.log(data)
-                toast.success(data.message)
+                toast.success(data.message);
                 setPhoneNumber('');
-                setPassword('')
-                navigate('/')
-            }
-            else {
-                toast.error(data.message)
+                setPassword('');
+                navigate('/');
+            } else {
+                toast.error(data.message);
             }
         } catch (error) {
             console.error(error);
-            toast.error('something went wrong')
+            toast.error('Something went wrong');
         }
     };
 
     return (
-        <div style={{
-            display: "flex",
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: '100vh'
+        <form onSubmit={handleSubmit}>
+            <div className='text-center mb-5'>
+                <h3 >Login Now</h3>
+                <div>Please enter details below to continue</div>
+            </div>
+            <div className='d-flex justify-content-center align-items-center flex-column gap-4  '>
+                <div className='d-flex bg-red gap-2 border border-primary p-2 rounded'>
+                    <div
+                        className='p-2 rounded-circle d-flex align-items-center justify-content-center'
+                        style={{
+                            backgroundColor: 'blue',
+                            color: 'white',
+                            fontSize: '1.2rem'
 
-        }}>
-            <LoginContainer>
-                <ToastContainer />
+                        }}>
+                        <IoIosCall />
+                    </div>
+                    <input
+                        type='text'
+                        pattern="[0-9]*"
+                        inputmode="numeric"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        placeholder='Enter Mobile No.'
+                        maxLength="10"
+                        className='px-2 bg-white border-0 outline-0 fs-5'
+                        style={{
+                            outline: 'none',
+                            fontSize: "1.5rem"
+                        }}
+                    />
+                </div>
+                <div className='d-flex bg-red gap-2 border border-primary p-2 rounded'>
+                    <div
+                        className='p-2 rounded-circle d-flex align-items-center justify-content-center'
+                        style={{
+                            backgroundColor: 'purple',
+                            color: 'white',
+                            fontSize: '1.2rem'
 
-                <h2>Login</h2>
-                <form onSubmit={handleSubmit}>
-                    <FormGroup>
-                        <Label htmlFor="phoneNumber">Phone Number</Label>
-                        <Input
-                            type="tel"
-                            id="phoneNumber"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            required
-                            autoComplete="false"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="password">Password</Label>
-                        <Input
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            autoComplete="false"
-                            required
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Button type="submit">Login</Button>
-                    </FormGroup>
-                </form>
-                <AdditionalOptions>
-                    <a href="#" className="forgot-password">Forgot Password?</a>
-                    <span> | </span>
-                    <a href="#" className="create-account">Create Account</a>
-                </AdditionalOptions>
-            </LoginContainer>
-        </div>
+                        }}>
+                        <FaKey />
+                    </div>
+                    <input
+                        type='password'
+                        placeholder='Enter Password'
+                        maxLength="20"
+                        className='px-2 bg-white border-0 outline-0 fs-5'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{
+                            outline: 'none'
+                        }}
+                    />
+                </div>
+            </div>
+            <div className='d-flex justify-content-end my-3'
+                onClick={() => { navigate('/forgot-password') }}
+                style={{
+                    color: 'blue',
+                    fontWeight: 'bolder',
+                    cursor: 'pointer'
+                }}
+            >
+                Forget Password
+            </div>
+            <button className="btn btn-primary w-100 py-3 my-2" type="submit"
+                style={{ letterSpacing: '1px', fontWeight: 'bolder', fontSize: '1.1rem' }}>
+                Login
+            </button>
+            <div className='text-center mt-4'>
+                Don't have an account? <span onClick={() => { navigate('/register') }} style={{
+                    color: 'blue',
+                    fontWeight: 'bold',
+                    cursor: 'pointer'
+                }}>
+                    Register</span>
+            </div>
+
+
+
+
+
+
+        </form>
     );
 }
 
