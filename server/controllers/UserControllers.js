@@ -1,15 +1,20 @@
 const UserModels = require('../models/UserModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const myCache = require('../helper/myCache')
 
 const registerController = async (req, res) => {
     try {
-        const { username, phoneNumber, password } = req.body;
+        const { username, phoneNumber, password, otp } = req.body;
 
-        // Check if phone number is provided
-        if (!phoneNumber) {
-            return res.status(400).json({ error: 'Phone number is required' });
+        if (!phoneNumber || !username || !password) {
+            return res.status(400).json({ error: 'fill alll fields' });
         }
+        let otpSaved = await myCache.get(phoneNumber);
+        if (otpSaved != otp) {
+            return res.status(400).send({ error: 'otp wrong' });
+        }
+
 
         // Check if phone number already exists
         const existingUser = await UserModels.findOne({ phoneNumber });

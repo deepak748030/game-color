@@ -13,7 +13,25 @@ const RegisterPage = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [referralCode, setReferralCode] = useState('');
+    const [otp, setOtp] = useState('');
+    const [otpSent, setOtpSent] = useState(false);
     const navigate = useNavigate();
+
+    const sendOtp = async () => {
+        try {
+            const response = await axios.post(`${apiUrl}/auth/send-otp`, {
+                phoneNumber
+            });
+            if (response?.data) {
+                toast.success('OTP sent successfully');
+                setOtpSent(true);
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error('Failed to send OTP');
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -21,7 +39,8 @@ const RegisterPage = () => {
                 username,
                 phoneNumber,
                 password,
-                referralCode
+                referralCode,
+                otp
             });
             if (response?.data) {
                 toast.success(response.data.message);
@@ -36,7 +55,7 @@ const RegisterPage = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <>
             <div className='text-center mb-5'>
                 <h3>Register Now</h3>
                 <div>Please enter details below to continue</div>
@@ -161,9 +180,35 @@ const RegisterPage = () => {
                 </div>
             </div>
 
+
+
+            <div className='d-flex justify-content-between align-items-center gap-2 mt-3'>
+                <div className='d-flex bg-red gap-2 border border-primary p-2 px-4 rounded'>
+                    <input
+                        type='text'
+                        placeholder='Enter OTP'
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        className='bg-white border-0 outline-0 fs-6'
+                        style={{
+                            outline: 'none',
+                            width: "5rem"
+                        }}
+                    />
+                </div>
+                {!otpSent && (
+                    <button
+                        className="btn btn-primary"
+                        onClick={sendOtp}
+                    >
+                        Send OTP
+                    </button>
+                )}
+            </div>
+
             <button
                 className="btn btn-primary w-100 py-3 mt-4 "
-                type="submit"
+                onClick={handleSubmit}
                 style={{
                     letterSpacing: '2px'
                 }}>
@@ -181,7 +226,7 @@ const RegisterPage = () => {
                     Login
                 </span>
             </div>
-        </form>
+        </>
     );
 };
 
